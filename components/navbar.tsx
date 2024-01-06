@@ -26,7 +26,7 @@ import {
 	TwitterIcon,
 	GithubIcon,
 	DiscordIcon,
-	HeartFilledIcon,
+	ConsoleIcon,
 	SearchIcon,
 } from "@/components/icons";
 
@@ -86,12 +86,15 @@ export const Navbar = () => {
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
 						href={siteConfig.links.sponsor}
-						startContent={<HeartFilledIcon className="text-emerald-600" />}
+						startContent={<ConsoleIcon />}
 						variant="flat"
 					>
 						RCON
 					</Button>
 				</NavbarItem>
+        <NavbarItem className="hidden sm:flex gap-2">
+          <ThemeSwitch />
+        </NavbarItem>
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

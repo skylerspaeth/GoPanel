@@ -132,7 +132,7 @@ export const SunFilledIcon = ({
 	</svg>
 );
 
-export const HeartFilledIcon = ({
+export const ConsoleIcon = ({
 	size = 24,
 	width,
 	height,
