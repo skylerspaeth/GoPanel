@@ -33,7 +33,7 @@ import {
 import { Logo } from "@/components/icons";
 
 const toLabelCase = str => str.split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
-const gamemodes = [ "competitive", "casual", "wingman", "arms race" ];
+const gamemodes = [ "competitive", "casual", "wingman", "war games" ];
 
 export const Navbar = () => {
 	const searchInput = (

@@ -11,23 +11,33 @@ import { GithubIcon } from "@/components/icons";
 const maps = [
   {
     title: "Nuke",
-    mapfile: "de_nuke.png",
-    author: "Valve"
+    author: "Valve",
+    mapfile: "de_nuke",
+    gamemodes: ["competitive", "casual", "wingman"]
   },
   {
     title: "Cobblestone",
-    mapfile: "de_cbble.png",
-    author: "Valve"
+    author: "Valve",
+    mapfile: "de_cbble",
+    gamemodes: ["wingman"]
   },
   {
     title: "Cache",
-    mapfile: "de_cache.png",
-    author: "FM Pone"
+    author: "FM Pone",
+    mapfile: "de_cache",
+    gamemodes: []
   },
   {
     title: "Inferno",
-    mapfile: "de_inferno.png",
-    author: "Valve"
+    author: "Valve",
+    mapfile: "de_inferno",
+    gamemodes: []
+  },
+  {
+    title: "Lake",
+    author: "Valve",
+    mapfile: "de_lake",
+    gamemodes: ["wingman"]
   },
 ];
 
@@ -54,7 +64,7 @@ export default function Home() {
                   width="100%"
                   alt={item.title}
                   className="w-full object-cover h-[140px]"
-                  src={"/images/" + item.mapfile}
+                  src={`/images/${item.mapfile}.png`}
                 />
               </CardBody>
               <CardFooter className="text-small justify-between">
