@@ -32,9 +32,6 @@ import {
 
 import { Logo } from "@/components/icons";
 
-const toLabelCase = str => str.split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
-const gamemodes = [ "competitive", "casual", "wingman", "war games" ];
-
 export const Navbar = () => {
 	const searchInput = (
 		<Input
@@ -66,11 +63,10 @@ export const Navbar = () => {
 						<p className="font-bold text-inherit">GoPanel</p>
 					</NextLink>
 				</NavbarBrand>
-        <NavbarItem key="gamemode-tabs">
-          <Tabs key="gamemodes" size="md">
-            {gamemodes.map((gamemode) => (
-              <Tab key={gamemode} title={toLabelCase(gamemode)} />
-            ))}
+        <NavbarItem key="map-sources">
+          <Tabs key="map-sources-tabs" size="md">
+            <Tab key="official" title="Official Maps" />
+            <Tab key="workshop" title="Workshop Maps" />
           </Tabs>
         </NavbarItem>
 			</NavbarContent>
@@ -82,10 +78,8 @@ export const Navbar = () => {
 				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
-            isExternal
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
-						href={siteConfig.links.sponsor}
 						startContent={<ConsoleIcon />}
 						variant="flat"
 					>
@@ -98,9 +92,6 @@ export const Navbar = () => {
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-				<Link isExternal href={siteConfig.links.github} aria-label="Github">
-					<GithubIcon className="text-default-500" />
-				</Link>
 				<ThemeSwitch />
 				<NavbarMenuToggle />
 			</NavbarContent>
@@ -108,23 +99,12 @@ export const Navbar = () => {
 			<NavbarMenu>
 				{searchInput}
 				<div className="mx-4 mt-2 flex flex-col gap-2">
-					{gamemodes.map((gamemode, index) => (
-						<NavbarMenuItem key={`${gamemode}-${index}`}>
-							<Link
-								color={
-									index === 2
-										? "primary"
-										: index === gamemodes.length - 1
-										? "danger"
-										: "foreground"
-								}
-								href="#"
-								size="lg"
-							>
-								{gamemode}
-							</Link>
-						</NavbarMenuItem>
-					))}
+          <NavbarMenuItem key="official-maps-menu-item">
+            <Link color="foreground" href="#" size="lg">Official Maps</Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem key="workshop-maps-menu-item">
+            <Link color="foreground" href="#" size="lg">Workshop Maps</Link>
+          </NavbarMenuItem>
 				</div>
 			</NavbarMenu>
 		</NextUINavbar>

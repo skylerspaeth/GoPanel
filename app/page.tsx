@@ -16,31 +16,31 @@ const maps = [
     title: "Nuke",
     author: "Valve",
     mapfile: "de_nuke",
-    gamemodes: ["competitive", "casual", "wingman"]
+    gamemodes: ["cp", "cs", "wm"]
   },
   {
     title: "Cobblestone",
     author: "Valve",
     mapfile: "de_cbble",
-    gamemodes: ["wingman"]
+    gamemodes: ["wm"]
   },
   {
     title: "Cache",
     author: "FM Pone",
     mapfile: "de_cache",
-    gamemodes: []
+    gamemodes: ["cp", "cs"]
   },
   {
     title: "Inferno",
     author: "Valve",
     mapfile: "de_inferno",
-    gamemodes: []
+    gamemodes: ["cp", "cs", "wm"]
   },
   {
     title: "Lake",
     author: "Valve",
     mapfile: "de_lake",
-    gamemodes: ["wingman"]
+    gamemodes: ["wm", "fs", "ar", "dl"]
   },
 ];
 
@@ -53,7 +53,7 @@ export default function Home() {
   } = useDisclosure();
 
   // track supported gamemodes for requested map
-  const [modes, setModes] = useState([]);
+  const [gamemodes, setGamemodes] = useState([]);
 
 	return (
     <>
@@ -69,7 +69,7 @@ export default function Home() {
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
           {maps.map((item, index) => (
-            <Card shadow="sm" key={index} isPressable onPress={() => { setModes(item.gamemodes); openGmModal() }}>
+            <Card shadow="sm" key={index} isPressable onPress={() => { setGamemodes(item.gamemodes); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image
                   shadow="sm"
@@ -86,7 +86,7 @@ export default function Home() {
               </CardFooter>
             </Card>
           ))}
-          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} modes={modes} />
+          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} gamemodes={gamemodes} />
         </div>
       </section>
     </>
