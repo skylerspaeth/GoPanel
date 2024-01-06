@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -11,6 +13,7 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
+import { Tabs, Tab } from "@nextui-org/tabs";
 
 import { link as linkStyles } from "@nextui-org/theme";
 
@@ -29,7 +32,8 @@ import {
 
 import { Logo } from "@/components/icons";
 
-const gamemodes = [ "competitive", "wingman", "casual" ];
+const toLabelCase = str => str.split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
+const gamemodes = [ "competitive", "casual", "wingman", "arms race" ];
 
 export const Navbar = () => {
 	const searchInput = (
@@ -62,22 +66,13 @@ export const Navbar = () => {
 						<p className="font-bold text-inherit">GoPanel</p>
 					</NextLink>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2">
-					{gamemodes.map((gamemode) => (
-						<NavbarItem key={gamemode}>
-							<NextLink
-								className={clsx(
-									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium"
-								)}
-								color="foreground"
-								href={gamemode}
-							>
-								{gamemode}
-							</NextLink>
-						</NavbarItem>
-					))}
-				</ul>
+        <NavbarItem key="gamemode-tabs">
+          <Tabs key="gamemodes" size="md">
+            {gamemodes.map((gamemode) => (
+              <Tab key={gamemode} title={toLabelCase(gamemode)} />
+            ))}
+          </Tabs>
+        </NavbarItem>
 			</NavbarContent>
 
 			<NavbarContent
