@@ -29,6 +29,8 @@ import {
 
 import { Logo } from "@/components/icons";
 
+const gamemodes = [ "competitive", "wingman", "casual" ];
+
 export const Navbar = () => {
 	const searchInput = (
 		<Input
@@ -61,17 +63,17 @@ export const Navbar = () => {
 					</NextLink>
 				</NavbarBrand>
 				<ul className="hidden lg:flex gap-4 justify-start ml-2">
-					{siteConfig.navItems.map((item) => (
-						<NavbarItem key={item.href}>
+					{gamemodes.map((gamemode) => (
+						<NavbarItem key={gamemode}>
 							<NextLink
 								className={clsx(
 									linkStyles({ color: "foreground" }),
 									"data-[active=true]:text-primary data-[active=true]:font-medium"
 								)}
 								color="foreground"
-								href={item.href}
+								href={gamemode}
 							>
-								{item.label}
+								{gamemode}
 							</NextLink>
 						</NavbarItem>
 					))}
@@ -108,20 +110,20 @@ export const Navbar = () => {
 			<NavbarMenu>
 				{searchInput}
 				<div className="mx-4 mt-2 flex flex-col gap-2">
-					{siteConfig.navMenuItems.map((item, index) => (
-						<NavbarMenuItem key={`${item}-${index}`}>
+					{gamemodes.map((gamemode, index) => (
+						<NavbarMenuItem key={`${gamemode}-${index}`}>
 							<Link
 								color={
 									index === 2
 										? "primary"
-										: index === siteConfig.navMenuItems.length - 1
+										: index === gamemodes.length - 1
 										? "danger"
 										: "foreground"
 								}
 								href="#"
 								size="lg"
 							>
-								{item.label}
+								{gamemode}
 							</Link>
 						</NavbarMenuItem>
 					))}
