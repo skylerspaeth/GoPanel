@@ -15,14 +15,18 @@ const gmCodeMap = {
   dl: "Demolition"
 };
 
-export const GamemodeModal = ({isOpen, onOpenChange, gamemodes, label}) => {
-  const [goActive, setGoActive] = useState(false);
+const startNewMap = (mapFile, gamemode) => {
+  console.log(`Starting ${mapFile}.bsp in the ${gamemode} gamemode...`);
+};
+
+export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
+  const [selectedGm, setSelectedGm] = useState(false);
 
   return (
     <Modal
       isOpen={isOpen}
       onOpenChange={onOpenChange}
-      onClose={() => setGoActive(false)}
+      onClose={() => setSelectedGm(null)}
       classNames={{header: "pb-2", footer: "justify-start"}}
     >
       <ModalContent>
@@ -30,10 +34,10 @@ export const GamemodeModal = ({isOpen, onOpenChange, gamemodes, label}) => {
           <>
             <ModalHeader className="flex flex-col gap-1 text-foreground-500">Select a gamemode to host</ModalHeader>
             <ModalBody>
-              <RadioGroup color="secondary" onChange={() => setGoActive(true)}>
-                {gamemodes.map((gmCode) =>
+              <RadioGroup color="secondary" onChange={(e) => setSelectedGm(e.target.value)}>
+                {mapInfo.gamemodes.map((gmCode) =>
                   <Radio
-                    value={gmCodeMap[gmCode]}
+                    value={gmCode}
                     classNames={{base: cn(
                       "w-full max-w-full inline-flex m-0 bg-content1 hover:bg-content2 items-center",
                       "group active:opacity-50 flex-row-reverse justify-between tap-highlight-transparent",
@@ -45,11 +49,11 @@ export const GamemodeModal = ({isOpen, onOpenChange, gamemodes, label}) => {
                   </Radio>
                 )}
               </RadioGroup>
-              <p className="text-default-500 text-small">{label}</p>
+              <p className="text-default-500 text-small">{`Only showing gamemodes officially supported by ${mapInfo.title}.`}</p>
             </ModalBody>
             <ModalFooter>
               <div className="flex gap-4 items-center w-full">
-                <Button isDisabled={!goActive} onPress={onClose} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
+                <Button isDisabled={!selectedGm} onPress={() => {startNewMap(mapInfo.mapfile, selectedGm); onClose()}} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
                   Go
                 </Button>
               </div>

@@ -95,7 +95,7 @@ export default function Home() {
               </CardFooter>
             </Card>
           ))}
-          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} gamemodes={selectedMap.gamemodes} label={`Only showing gamemodes officially supported by ${selectedMap.title}.`}/>
+          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} mapInfo={selectedMap}/>
         </div>
       </section>
     </>
