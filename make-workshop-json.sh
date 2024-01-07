@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-# this script generates a JSON file with a list of all the CS:GO maps in your
-# local steam library which (should) contain every map you're subscribed to
+# this script generates a JSON file with a list of all the CS:GO workshop maps in
+# your local steam library which (should) contain every map you're subscribed to
 
 # you can omit API key from curl, but may hit rate limit sooner
 STEAM_API_KEY=$(jq -r .steam_api_key config.json)
