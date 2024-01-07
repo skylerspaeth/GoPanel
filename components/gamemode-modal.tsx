@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, RadioGroup, Radio, cn } from "@nextui-org/react";
 import { ArrowIcon } from "@/components/icons";
 
@@ -15,15 +15,22 @@ const gmCodeMap = {
   dl: "Demolition"
 };
 
-export const GamemodeModal = ({isOpen, onOpenChange, gamemodes}) => {
+export const GamemodeModal = ({isOpen, onOpenChange, gamemodes, label}) => {
+  const [goActive, setGoActive] = useState(false);
+
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} classNames={{header: "pb-2", footer: "justify-start"}}>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      onClose={() => setGoActive(false)}
+      classNames={{header: "pb-2", footer: "justify-start"}}
+    >
       <ModalContent>
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 text-foreground-500">Select a gamemode to host</ModalHeader>
             <ModalBody>
-              <RadioGroup color="secondary">
+              <RadioGroup color="secondary" onChange={() => setGoActive(true)}>
                 {gamemodes.map((gmCode) =>
                   <Radio
                     value={gmCodeMap[gmCode]}
@@ -38,10 +45,11 @@ export const GamemodeModal = ({isOpen, onOpenChange, gamemodes}) => {
                   </Radio>
                 )}
               </RadioGroup>
+              <p className="text-default-500 text-small">{label}</p>
             </ModalBody>
             <ModalFooter>
               <div className="flex gap-4 items-center w-full">
-                <Button onPress={onClose} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
+                <Button isDisabled={!goActive} onPress={onClose} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
                   Go
                 </Button>
               </div>

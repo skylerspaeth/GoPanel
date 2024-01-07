@@ -42,6 +42,12 @@ const maps = [
     mapfile: "de_lake",
     gamemodes: ["wm", "fs", "ar", "dl"]
   },
+  {
+    title: "Train",
+    author: "Valve",
+    mapfile: "de_train",
+    gamemodes: ["cp", "cs", "wm"]
+  }
 ];
 
 export default function Home() {
@@ -54,6 +60,9 @@ export default function Home() {
 
   // track supported gamemodes for requested map
   const [gamemodes, setGamemodes] = useState([]);
+
+  // track selected map
+  const [selectedMap, setSelectedMap] = useState({});
 
 	return (
     <>
@@ -69,7 +78,7 @@ export default function Home() {
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
           {maps.map((item, index) => (
-            <Card shadow="sm" key={index} isPressable onPress={() => { setGamemodes(item.gamemodes); openGmModal() }}>
+            <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image
                   shadow="sm"
@@ -86,7 +95,7 @@ export default function Home() {
               </CardFooter>
             </Card>
           ))}
-          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} gamemodes={gamemodes} />
+          <GamemodeModal isOpen={gmModalIsOpen} onOpenChange={onGmModalChange} gamemodes={selectedMap.gamemodes} label={`Only showing gamemodes officially supported by ${selectedMap.title}.`}/>
         </div>
       </section>
     </>
