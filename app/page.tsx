@@ -11,44 +11,7 @@ import { GithubIcon } from "@/components/icons";
 
 import { GamemodeModal } from "@/components/gamemode-modal";
 
-const maps = [
-  {
-    title: "Nuke",
-    author: "Valve",
-    mapfile: "de_nuke",
-    gamemodes: ["cp", "cs", "wm"]
-  },
-  {
-    title: "Cobblestone",
-    author: "Valve",
-    mapfile: "de_cbble",
-    gamemodes: ["wm"]
-  },
-  {
-    title: "Cache",
-    author: "FM Pone",
-    mapfile: "de_cache",
-    gamemodes: ["cp", "cs"]
-  },
-  {
-    title: "Inferno",
-    author: "Valve",
-    mapfile: "de_inferno",
-    gamemodes: ["cp", "cs", "wm"]
-  },
-  {
-    title: "Lake",
-    author: "Valve",
-    mapfile: "de_lake",
-    gamemodes: ["wm", "fs", "ar", "dl"]
-  },
-  {
-    title: "Train",
-    author: "Valve",
-    mapfile: "de_train",
-    gamemodes: ["cp", "cs", "wm"]
-  }
-];
+import { officialMaps } from "./official-maps";
 
 export default function Home() {
   // destructure and rename keys for gamemode selection modal
@@ -77,7 +40,7 @@ export default function Home() {
       </section>
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
-          {maps.map((item, index) => (
+          {officialMaps.map((item, index) => (
             <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image
