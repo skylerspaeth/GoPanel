@@ -51,6 +51,7 @@ export const Navbar = () => {
 				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
 			}
 			type="search"
+      onValueChange={(val) => { console.log(`changed to ${val}.`) }}
 		/>
 	);
 
