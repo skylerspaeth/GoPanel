@@ -13,7 +13,7 @@ import { GamemodeModal } from "@/components/gamemode-modal";
 
 import { officialMaps } from "./official-maps";
 
-export default function Home() {
+export default function Home({ filter }) {
   // destructure and rename keys for gamemode selection modal
   const {
     isOpen: gmModalIsOpen,
@@ -40,7 +40,7 @@ export default function Home() {
       </section>
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
-          {officialMaps.map((item, index) => (
+          {officialMaps.filter((map) => map.title.toLowerCase().includes(filter)).map((item, index) => (
             <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image
