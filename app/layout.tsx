@@ -33,7 +33,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-  const [filter, setFilter] = useState("");
+  const [filters, setFilters] = useState({ name: "", source: "official" });
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -45,9 +45,9 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
-						<Navbar setFilter={setFilter} />
+						<Navbar filters={filters} setFilters={setFilters} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              <Home filter={filter} />
+              <Home filters={filters} />
 						</main>
 						{/*<footer className="w-full flex items-center justify-center py-3">
 							<div

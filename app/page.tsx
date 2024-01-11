@@ -12,8 +12,9 @@ import { GithubIcon } from "@/components/icons";
 import { GamemodeModal } from "@/components/gamemode-modal";
 
 import { officialMaps } from "./official-maps";
+import { workshopMaps } from "./workshop-maps";
 
-export default function Home({ filter }) {
+export default function Home({ filters }) {
   // destructure and rename keys for gamemode selection modal
   const {
     isOpen: gmModalIsOpen,
@@ -40,7 +41,7 @@ export default function Home({ filter }) {
       </section>
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
-          {officialMaps.filter((map) => map.title.toLowerCase().includes(filter)).map((item, index) => (
+          {(filters.source == "official" ? officialMaps : workshopMaps).filter((map) => map.title.toLowerCase().includes(filters.name)).map((item, index) => (
             <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image

@@ -32,7 +32,7 @@ import {
 
 import { Logo } from "@/components/icons";
 
-export const Navbar = ({ setFilter }) => {
+export const Navbar = ({ filters, setFilters }) => {
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -51,7 +51,7 @@ export const Navbar = ({ setFilter }) => {
 				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
 			}
 			type="search"
-      onValueChange={(val) => setFilter(val.toLowerCase()) }
+      onValueChange={(val) => setFilters({ ...filters, name: val.toLowerCase() }) }
 		/>
 	);
 
@@ -65,7 +65,7 @@ export const Navbar = ({ setFilter }) => {
 					</NextLink>
 				</NavbarBrand>
         <NavbarItem key="map-sources">
-          <Tabs key="map-sources-tabs" size="md">
+          <Tabs key="map-sources-tabs" size="md" onSelectionChange={(val) => setFilters({ ...filters, source: val }) }>
             <Tab key="official" title="Official Maps" />
             <Tab key="workshop" title="Workshop Maps" />
           </Tabs>
