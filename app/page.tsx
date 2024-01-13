@@ -49,7 +49,7 @@ export default function Home({ filters }) {
                   radius="lg"
                   width="100%"
                   alt={item.title}
-                  className="w-full object-cover h-[140px]"
+                  className="w-full object-cover"
                   src={filters.source == "official" ? `/images/${item.filename}.png` : item.preview_url}
                 />
               </CardBody>
