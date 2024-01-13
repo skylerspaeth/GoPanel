@@ -50,7 +50,7 @@ export default function Home({ filters }) {
                   width="100%"
                   alt={item.title}
                   className="w-full object-cover"
-                  src={filters.source == "official" ? `/images/${item.filename}.png` : item.preview_url}
+                  src={filters.source == "official" ? `/images/${item.filename}.png` : item.image}
                 />
               </CardBody>
               <CardFooter className="text-small justify-between">
