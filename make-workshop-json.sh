@@ -22,12 +22,16 @@ echo "This may take some time if you're subscribed to lots of maps."
 echo
 
 for STEAM_FILE_ID in $(ls -1 $SL_PATH/steam/steamapps/workshop/content/730/ | xargs); do
-  curl -Ss --location 'https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode "key=$STEAM_API_KEY" \
-    --data-urlencode "itemcount=1" \
-    --data-urlencode "publishedfileids%5B0%5D=$STEAM_FILE_ID" | \
-  jq -r '.response.publishedfiledetails[0] | {title, preview_url}'
+  PRELOOKUP_JSON=$(
+    curl -Ss --location 'https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --data-urlencode "key=$STEAM_API_KEY" \
+      --data-urlencode "itemcount=1" \
+      --data-urlencode "publishedfileids%5B0%5D=$STEAM_FILE_ID" | \
+    jq -r '.response.publishedfiledetails[0] | {title, filename, image: .preview_url, creator, gamemodes: .tags | map(select(.tag != "Map").tag)}'
+  )
+  PERSON_NAME=$(curl -Ss --location "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=$STEAM_API_KEY&steamids=`jq .creator <<< $PRELOOKUP_JSON`" | jq -r '.response.players[0].personaname')
+  jq --arg creator "$PERSON_NAME" '.creator = $creator' <<< $PRELOOKUP_JSON
 done | jq --slurp . > workshop-maps.json
 
 echo "Success! Output saved to '$JSON_FILE'."

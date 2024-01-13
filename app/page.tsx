@@ -50,12 +50,12 @@ export default function Home({ filters }) {
                   width="100%"
                   alt={item.title}
                   className="w-full object-cover h-[140px]"
-                  src={`/images/${item.mapfile}.png`}
+                  src={filters.source == "official" ? `/images/${item.filename}.png` : item.preview_url}
                 />
               </CardBody>
               <CardFooter className="text-small justify-between">
                 <b>{item.title}</b>
-                <p className="text-default-500">{item.author}</p>
+                <p className="text-default-500">{item.creator}</p>
               </CardFooter>
             </Card>
           ))}

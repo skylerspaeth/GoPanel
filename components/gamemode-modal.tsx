@@ -35,9 +35,9 @@ export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
             <ModalHeader className="flex flex-col gap-1 text-foreground-500">Select a gamemode to host</ModalHeader>
             <ModalBody>
               <RadioGroup color="secondary" onChange={(e) => setSelectedGm(e.target.value)}>
-                {mapInfo.gamemodes.map((gmCode) =>
+                {mapInfo.gamemodes.map((gamemode) =>
                   <Radio
-                    value={gmCode}
+                    value={gamemode}
                     classNames={{base: cn(
                       "w-full max-w-full inline-flex m-0 bg-content1 hover:bg-content2 items-center",
                       "group active:opacity-50 flex-row-reverse justify-between tap-highlight-transparent",
@@ -45,7 +45,7 @@ export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
                       "data-[selected=true]:border-secondary",
                     )}}
                   >
-                    {gmCodeMap[gmCode]}
+                    {gamemode}
                   </Radio>
                 )}
               </RadioGroup>
