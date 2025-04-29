@@ -35,7 +35,7 @@ export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
             <ModalHeader className="flex flex-col gap-1 text-foreground-500">Select a gamemode to host</ModalHeader>
             <ModalBody>
               <RadioGroup color="secondary" onChange={(e) => setSelectedGm(e.target.value)}>
-                {mapInfo.gamemodes.map((gamemode) =>
+                {mapInfo.gamemodes.map((gamemode, index) =>
                   <Radio
                     value={gamemode}
                     classNames={{base: cn(
@@ -44,6 +44,7 @@ export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
                       "cursor-pointer border-2 border-default rounded-lg gap-4 p-4",
                       "data-[selected=true]:border-secondary",
                     )}}
+                    key={index}
                   >
                     {gamemode}
                   </Radio>
@@ -53,7 +54,7 @@ export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
             </ModalBody>
             <ModalFooter>
               <div className="flex gap-4 items-center w-full">
-                <Button isDisabled={!selectedGm} onPress={() => {startNewMap(mapInfo.mapfile, selectedGm); onClose()}} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
+                <Button isDisabled={!selectedGm} onPress={() => {startNewMap(mapInfo.filename, selectedGm); onClose()}} className="text-md w-full bg-gradient-to-tr from-[#006734] to-[#00a24f]">
                   Go
                 </Button>
               </div>
