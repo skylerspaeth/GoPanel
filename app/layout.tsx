@@ -34,6 +34,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
   const [filters, setFilters] = useState({ name: "", source: "official" });
+  const [numMapsShown, setNumMapsShown] = useState(0);
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -44,18 +45,18 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-screen">
+					<div className="relative flex flex-col min-h-screen">
 						<Navbar filters={filters} setFilters={setFilters} />
 						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              <Home filters={filters} />
+              <Home filters={filters} setNumMapsShown={setNumMapsShown} />
 						</main>
-						{/*<footer className="w-full flex items-center justify-center py-3">
+						<footer className="w-full flex items-center justify-center pb-6">
 							<div
 								className="flex items-center gap-1 text-current"
 							>
-								<span className="text-default-600">Built by Skyler Spaeth</span>
+								<span className="text-default-300">Currently showing {numMapsShown} maps</span>
 							</div>
-						</footer>*/}
+						</footer>
 					</div>
 				</Providers>
 			</body>
