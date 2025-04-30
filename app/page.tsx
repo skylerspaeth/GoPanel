@@ -48,7 +48,14 @@ export default function Home({ filters, setNumMapsShown }) {
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
           {filteredMaps.map((item, index) => (
-            <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
+            <Card
+              className="transform transition-transform ease-out hover:scale-105 duration-200"
+              disableAnimation // needed in order to supply custom animation above
+              shadow="sm"
+              key={index}
+              isPressable
+              onPress={() => { setSelectedMap(item); openGmModal() }}
+            >
               <CardBody className="overflow-visible p-0">
                 <Image
                   shadow="sm"
