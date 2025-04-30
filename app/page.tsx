@@ -14,7 +14,7 @@ import { GamemodeModal } from "@/components/gamemode-modal";
 import { officialMaps } from "./official-maps";
 import { workshopMaps } from "./workshop-maps";
 
-export default function Home({ filters }) {
+export default function Home({ filters, setNumMapsShown }) {
   // destructure and rename keys for gamemode selection modal
   const {
     isOpen: gmModalIsOpen,
@@ -27,6 +27,12 @@ export default function Home({ filters }) {
 
   // track selected map
   const [selectedMap, setSelectedMap] = useState({});
+
+  // realtime array of filtered maps
+  const filteredMaps = (filters.source == "official" ? officialMaps : workshopMaps).filter((map) => map.title.toLowerCase().includes(filters.name));
+
+  // total number of maps that are being displayed on screen
+  setNumMapsShown(filteredMaps.length);
 
 	return (
     <>
@@ -41,7 +47,7 @@ export default function Home({ filters }) {
       </section>
       <section className="py-6">
         <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
-          {(filters.source == "official" ? officialMaps : workshopMaps).filter((map) => map.title.toLowerCase().includes(filters.name)).map((item, index) => (
+          {filteredMaps.map((item, index) => (
             <Card shadow="sm" key={index} isPressable onPress={() => { setSelectedMap(item); openGmModal() }}>
               <CardBody className="overflow-visible p-0">
                 <Image
