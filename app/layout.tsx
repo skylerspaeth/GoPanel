@@ -54,7 +54,7 @@ export default function RootLayout({
 							<div
 								className="flex items-center gap-1 text-current"
 							>
-								<span className="text-default-300">Currently showing {numMapsShown} maps</span>
+								<span className="text-default-300">Currently showing {numMapsShown} map{numMapsShown != 1 ? 's' : ''}</span>
 							</div>
 						</footer>
 					</div>
