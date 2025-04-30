@@ -8,14 +8,14 @@ import {
 	NavbarBrand,
 	NavbarItem,
 	NavbarMenuItem,
-} from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
-import { Tabs, Tab } from "@nextui-org/tabs";
+} from "@heroui/navbar";
+import { Button } from "@heroui/button";
+import { Kbd } from "@heroui/kbd";
+import { Link } from "@heroui/link";
+import { Input } from "@heroui/input";
+import { Tabs, Tab } from "@heroui/tabs";
 
-import { link as linkStyles } from "@nextui-org/theme";
+import { link as linkStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";

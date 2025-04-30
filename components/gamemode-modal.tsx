@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, RadioGroup, Radio, cn } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, RadioGroup, Radio, cn } from "@heroui/react";
 import { ArrowIcon } from "@/components/icons";
 
 // map short gamemode codes to full-length labels

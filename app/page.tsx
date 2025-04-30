@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { Card, CardBody, CardFooter, Image, useDisclosure } from "@nextui-org/react";
-import { button as buttonStyles } from "@nextui-org/theme";
+import { Link } from "@heroui/link";
+import { Snippet } from "@heroui/snippet";
+import { Code } from "@heroui/code"
+import { Card, CardBody, CardFooter, Image, useDisclosure } from "@heroui/react";
+import { button as buttonStyles } from "@heroui/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
