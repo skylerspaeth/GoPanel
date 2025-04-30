@@ -1,5 +1,10 @@
 "use client";
 
+// react & next
+import React, { useEffect, useRef } from "react";
+import NextLink from "next/link";
+
+// heroUI
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -14,30 +19,36 @@ import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
 import { Tabs, Tab } from "@heroui/tabs";
-
 import { link as linkStyles } from "@heroui/theme";
 
-import { siteConfig } from "@/config/site";
-import NextLink from "next/link";
-import clsx from "clsx";
-
+// user components
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-	TwitterIcon,
-	GithubIcon,
-	DiscordIcon,
-	ConsoleIcon,
-	SearchIcon,
-} from "@/components/icons";
-
-import { Logo } from "@/components/icons";
+import { Logo, ConsoleIcon, SearchIcon } from "@/components/icons";
 
 export const Navbar = ({ filters, setFilters }) => {
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // listen for cmd + k or ctrl + k
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    // add event listener when the component mounts
+    window.addEventListener("keydown", handleKeyDown);
+
+    // clean up the event listener when the component unmounts
+    return () => { window.removeEventListener("keydown", handleKeyDown) };
+  }, []);
+
 	const searchInput = (
 		<Input
 			aria-label="Search"
 			classNames={{
-				inputWrapper: "bg-default-100",
+				inputWrapper: "bg-default-100 group-data-[focus-visible=true]:ring-0 group-data-[focus-visible=true]:ring-offset-0",
 				input: "text-sm",
 			}}
 			endContent={
@@ -51,6 +62,8 @@ export const Navbar = ({ filters, setFilters }) => {
 				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
 			}
 			type="search"
+      ref={searchInputRef}
+      autoFocus
       onValueChange={(val) => setFilters({ ...filters, name: val.toLowerCase() }) }
 		/>
 	);
