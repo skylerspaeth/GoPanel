@@ -15,8 +15,17 @@ const gmCodeMap = {
   dl: "Demolition"
 };
 
-const startNewMap = (mapFile, gamemode) => {
-  console.log(`Starting ${mapFile}.bsp in the ${gamemode} gamemode...`);
+const startNewMap = (map, gamemode) => {
+  console.log(`Starting ${map}.bsp in the ${gamemode} gamemode...`);
+
+  fetch('/api/startmap?' + new URLSearchParams({ map, gamemode }))
+    .then(response => response.json())
+    .then(data => {
+      console.log("Server response:", data);
+    })
+    .catch(err => {
+      console.error("Failed to start map:", err);
+    });
 };
 
 export const GamemodeModal = ({isOpen, onOpenChange, mapInfo}) => {
